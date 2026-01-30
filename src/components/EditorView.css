@@ -1,0 +1,242 @@
+.editor-header {
+  margin-bottom: 56px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+  position: relative;
+}
+
+.editor-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+  transition: width 0.4s ease;
+}
+
+.editor-header:focus-within {
+  border-bottom-color: var(--border-color);
+}
+
+.editor-header:focus-within::after {
+  width: 100%;
+}
+
+.title-input {
+  width: 100%;
+  font-family: var(--font-family-serif);
+  font-size: 3.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  border: none;
+  outline: none !important;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 0;
+  margin: 0;
+  box-shadow: none !important;
+  resize: none;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.title-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Optional: Gradient text effect on hover */
+.title-input:not(:placeholder-shown):hover {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-input::placeholder {
+  color: var(--text-tertiary);
+  opacity: 0.35;
+  font-weight: 700;
+  -webkit-text-fill-color: var(--text-tertiary);
+  background: none;
+}
+
+.title-input:focus::placeholder {
+  opacity: 0.2;
+}
+
+.editor-wrapper {
+  position: relative;
+  isolation: isolate;
+}
+
+.editor-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200%;
+  max-width: 1200px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.theme-dark .editor-wrapper::before {
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+}
+
+/* Layout-specific adjustments */
+.editor-container.layout-book-like .title-input {
+  font-size: 2.25rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title-input {
+    font-size: 2rem;
+  }
+
+  .editor-container.layout-book-like .title-input {
+    font-size: 1.75rem;
+  }
+}
+
+/* Math node styles */
+.math-node {
+  display: inline-block;
+  padding: var(--spacing-xs);
+  background-color: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.math-node.block {
+  display: block;
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+.math-node:hover {
+  border-color: var(--accent-color);
+  background-color: var(--button-hover);
+}
+
+.math-node.selected {
+  border-color: var(--accent-color);
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.math-editor {
+  padding: var(--spacing-sm);
+}
+
+.math-input {
+  width: 100%;
+  font-family: var(--font-family-mono);
+  font-size: 0.95rem;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  resize: vertical;
+  min-height: 40px;
+}
+
+.math-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.math-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+}
+
+.math-btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.math-btn.save {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+}
+
+.math-btn.save:hover {
+  background-color: var(--accent-hover);
+}
+
+.math-btn.cancel {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.math-btn.cancel:hover {
+  background-color: var(--button-hover);
+}
+
+.math-render {
+  min-width: 40px;
+  min-height: 24px;
+  padding: var(--spacing-xs);
+}
+
+.math-placeholder {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.math-error {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  background-color: rgba(217, 48, 37, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+/* Dialog Backdrop */
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: calc(var(--z-modal) + 5);
+  animation: fadeIn 0.2s ease;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.theme-dark .dialog-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}

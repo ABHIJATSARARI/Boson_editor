@@ -1,0 +1,44 @@
+# Ignore source files (only ship dist)
+src/
+public/
+.vscode/
+node_modules/
+
+# Development files
+*.log
+*.tgz
+.DS_Store
+.env
+.env.local
+.env.*.local
+
+# Config files
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+.eslintrc.cjs
+.gitignore
+
+# Documentation (except package README)
+README.md
+SETUP.md
+SUCCESS.md
+PROJECT_COMPLETE.md
+PREMIUM_FEATURES.md
+ENHANCEMENTS.md
+
+# Development assets
+index.html
+main.tsx
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+__tests__/
+coverage/
+
+# Build artifacts
+dist-dev/
+.vite/

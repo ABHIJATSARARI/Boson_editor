@@ -1,0 +1,136 @@
+/* Slash Commands Menu */
+.slash-commands-menu {
+    position: fixed;
+    z-index: var(--z-popover);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    min-width: 320px;
+    max-width: 400px;
+    max-height: 400px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.2s ease;
+}
+
+body.dark-mode .slash-commands-menu,
+.theme-dark .slash-commands-menu {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slash-commands-header {
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.slash-commands-list {
+    overflow-y: auto;
+    max-height: 320px;
+    padding: 4px;
+}
+
+.slash-command-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.slash-command-item:hover,
+.slash-command-item.selected {
+    background: var(--button-hover);
+}
+
+.slash-command-item.selected {
+    background: var(--accent-color);
+    color: white;
+}
+
+.slash-command-item.selected .command-description {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.command-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.slash-command-item.selected .command-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.command-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.command-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.slash-command-item.selected .command-title {
+    color: white;
+}
+
+.command-description {
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.slash-commands-footer {
+    padding: 8px 12px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    text-align: center;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .command-icon,
+.theme-dark .command-icon {
+    background: var(--bg-tertiary);
+}

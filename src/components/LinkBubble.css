@@ -1,0 +1,173 @@
+/* Link Bubble - Medium Style */
+.link-bubble {
+    position: absolute;
+    z-index: 1000;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    padding: var(--spacing-xs);
+    animation: linkBubbleIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 280px;
+}
+
+@keyframes linkBubbleIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Preview Mode */
+.link-bubble-preview {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.link-bubble-url {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    flex: 1;
+    min-width: 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+}
+
+.link-icon {
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.link-text {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.875rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+
+.link-text:hover {
+    text-decoration: underline;
+}
+
+.link-bubble-actions {
+    display: flex;
+    gap: 2px;
+}
+
+.link-bubble-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.link-bubble-btn:hover {
+    background: var(--button-hover);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.link-bubble-btn.remove:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.link-bubble-btn.save {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    font-weight: 700;
+}
+
+.link-bubble-btn.save:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.link-bubble-btn.cancel:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+/* Edit Mode */
+.link-bubble-edit {
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
+}
+
+.link-bubble-input {
+    flex: 1;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-family: var(--font-family);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.link-bubble-input:focus {
+    background: var(--bg-primary);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.link-bubble-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+/* Arrow pointer */
+.link-bubble::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: var(--bg-primary);
+    border-left: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .link-bubble {
+        min-width: 240px;
+    }
+
+    .link-bubble-btn {
+        width: 32px;
+        height: 32px;
+    }
+}

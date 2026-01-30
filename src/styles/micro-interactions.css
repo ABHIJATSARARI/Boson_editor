@@ -1,0 +1,243 @@
+/* Micro-interactions and Polish */
+
+/* Smooth focus transitions */
+*:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 2px;
+  transition: outline-offset 0.2s ease;
+}
+
+/* Button press effect */
+button:active {
+  transform: scale(0.97);
+}
+
+/* Link hover effect with underline animation */
+a {
+  background-image: linear-gradient(var(--accent-color), var(--accent-color));
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 0.3s ease;
+}
+
+a:hover {
+  background-size: 100% 2px;
+}
+
+/* Smooth color transitions on all interactive elements */
+button,
+input,
+select,
+textarea {
+  transition: all 0.2s ease;
+}
+
+/* Enhanced tooltip behavior */
+[title]:hover::after {
+  animation: tooltipSlide 0.2s ease;
+}
+
+@keyframes tooltipSlide {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtle pulse animation for save status */
+@keyframes subtlePulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+}
+
+.saving {
+  animation: subtlePulse 1.5s ease-in-out infinite;
+}
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Skeleton loading shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--bg-secondary) 0%,
+      var(--bg-tertiary) 50%,
+      var(--bg-secondary) 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Smooth scrolling with momentum */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Enhanced image loading */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Text selection enhancement */
+::selection {
+  background-color: var(--selection-bg);
+  text-shadow: none;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --text-secondary: #000000;
+  }
+
+  .theme-dark {
+    --border-color: #ffffff;
+    --text-secondary: #ffffff;
+  }
+}
+
+/* Focus visible polyfill */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Smooth state transitions */
+.transitioning {
+  pointer-events: none;
+}
+
+/* Elegant hover lift for cards and images */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Stagger animation for lists */
+.stagger-animation>* {
+  opacity: 0;
+  animation: staggerFade 0.5s ease forwards;
+}
+
+.stagger-animation>*:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.stagger-animation>*:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.stagger-animation>*:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.stagger-animation>*:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.stagger-animation>*:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+@keyframes staggerFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth color mode transition */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enhanced scrollbar interaction */
+::-webkit-scrollbar-thumb:active {
+  background: var(--accent-color);
+}
+
+/* Ripple effect on buttons */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::after {
+  width: 300px;
+  height: 300px;
+}

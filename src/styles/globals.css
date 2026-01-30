@@ -1,0 +1,372 @@
+/* CSS Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Variables for Theming */
+:root {
+  /* Light Theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --bg-tertiary: #f5f5f5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b6b6b;
+  --text-tertiary: #9ca3af;
+  --border-color: #e5e7eb;
+  --border-color-hover: #d1d5db;
+  --toolbar-bg: rgba(255, 255, 255, 0.95);
+  --toolbar-shadow: rgba(0, 0, 0, 0.1);
+  --button-hover: #f3f4f6;
+  --button-active: #e5e7eb;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --link-color: #3b82f6;
+  --highlight-color: #fef3c7;
+  --code-bg: #f8fafc;
+  --code-border: #e2e8f0;
+  --selection-bg: rgba(59, 130, 246, 0.35);
+  --error-color: #ef4444;
+  --success-color: #10b981;
+  --editor-focus-bg: #fefefe;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono',
+    'Source Code Pro', 'Consolas', monospace;
+  --font-family-serif: 'Charter', 'Georgia', 'Times New Roman', serif;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
+
+/* Light Theme - explicit class */
+.theme-light,
+:root.theme-light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9f9f9;
+  --bg-tertiary: #f3f3f3;
+  --text-primary: #242424;
+  --text-secondary: #6b6b6b;
+  --text-tertiary: #999999;
+  --border-color: #e6e6e6;
+  --border-color-hover: #cccccc;
+  --toolbar-bg: #ffffff;
+  --toolbar-shadow: rgba(0, 0, 0, 0.1);
+  --button-hover: #f0f0f0;
+  --button-active: #e0e0e0;
+  --accent-color: #1a8917;
+  --accent-hover: #156d13;
+  --link-color: #0969da;
+  --highlight-color: #fff9c4;
+  --code-bg: #f6f8fa;
+  --code-border: #d0d7de;
+  --selection-bg: rgba(25, 137, 23, 0.3);
+  --error-color: #d93025;
+  --success-color: #1a8917;
+}
+
+/* Dark Theme */
+.theme-dark,
+:root.theme-dark {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #262626;
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --border-color: #2e2e32;
+  --border-color-hover: #3f3f46;
+  --toolbar-bg: rgba(26, 26, 26, 0.95);
+  --toolbar-shadow: rgba(0, 0, 0, 0.3);
+  --button-hover: #262626;
+  --button-active: #333338;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --link-color: #60a5fa;
+  --highlight-color: #713f12;
+  --code-bg: #1e1e1e;
+  --code-border: #333338;
+  --selection-bg: rgba(59, 130, 246, 0.5);
+  --error-color: #f87171;
+  --success-color: #34d399;
+  --editor-focus-bg: #141414;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) {
+    --bg-primary: #0e0e10;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    --text-primary: #eeeeee;
+    --text-secondary: #a8a8a8;
+    --text-tertiary: #6b6b6b;
+    --border-color: #3a3a3c;
+    --border-color-hover: #4a4a4c;
+    --toolbar-bg: #1c1c1e;
+    --toolbar-shadow: rgba(0, 0, 0, 0.3);
+    --button-hover: #2c2c2e;
+    --button-active: #3a3a3c;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
+    --link-color: #60a5fa;
+    --highlight-color: #713f12;
+    --code-bg: #1e293b;
+    --code-border: #334155;
+    --selection-bg: rgba(59, 130, 246, 0.5);
+    --error-color: #f87171;
+    --success-color: #3fb950;
+  }
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(59, 130, 246, 0.35);
+  color: inherit;
+  text-shadow: none;
+  -webkit-text-fill-color: inherit;
+}
+
+::-moz-selection {
+  background-color: rgba(59, 130, 246, 0.35);
+  color: inherit;
+  text-shadow: none;
+}
+
+/* Editor-specific enhanced selection */
+.ProseMirror ::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: var(--text-primary);
+  -webkit-text-fill-color: var(--text-primary);
+}
+
+.ProseMirror ::-moz-selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: var(--text-primary);
+}
+
+/* Dark mode selection - more visible */
+body.dark-mode ::selection {
+  background-color: rgba(59, 130, 246, 0.5);
+  color: var(--text-primary);
+}
+
+body.dark-mode ::-moz-selection {
+  background-color: rgba(59, 130, 246, 0.5);
+  color: var(--text-primary);
+}
+
+body.dark-mode .ProseMirror ::selection {
+  background: rgba(59, 130, 246, 0.45);
+  color: var(--text-primary);
+}
+
+body.dark-mode .ProseMirror ::-moz-selection {
+  background: rgba(59, 130, 246, 0.45);
+  color: var(--text-primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: none;
+}
+
+/* Only show focus outline for keyboard navigation on interactive elements */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Button Reset */
+button {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* Link Styles */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Image Styles */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Code Styles */
+code {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  background-color: var(--code-bg);
+  padding: 0.125rem 0.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--code-border);
+}
+
+pre code {
+  display: block;
+  padding: var(--spacing-md);
+  overflow-x: auto;
+}
+
+/* Utility Classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Animation Classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-fast);
+}
+
+.slide-up {
+  animation: slideUp var(--transition-normal);
+}
+
+.slide-down {
+  animation: slideDown var(--transition-normal);
+}

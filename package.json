@@ -1,0 +1,94 @@
+{
+  "name": "@bosonbrain/editor",
+  "version": "1.0.0",
+  "description": "A feature-rich, production-ready rich text editor with advanced formatting, AI-powered features, and beautiful UI/UX",
+  "private": false,
+  "type": "module",
+  "main": "./dist/bosonbrain-editor.umd.js",
+  "module": "./dist/bosonbrain-editor.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/bosonbrain-editor.es.js",
+      "require": "./dist/bosonbrain-editor.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "react",
+    "editor",
+    "rich-text",
+    "wysiwyg",
+    "tiptap",
+    "prosemirror",
+    "markdown",
+    "medium",
+    "writing",
+    "bosonbrain"
+  ],
+  "author": "BosonBrain",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bosonbrain/editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bosonbrain/editor/issues"
+  },
+  "homepage": "https://github.com/bosonbrain/editor#readme",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:package": "tsc && vite build --mode production",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "prepublishOnly": "npm run build:package"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@tiptap/extension-highlight": "^2.1.13",
+    "@tiptap/extension-image": "^2.1.13",
+    "@tiptap/extension-link": "^2.1.13",
+    "@tiptap/extension-placeholder": "^2.1.13",
+    "@tiptap/extension-table": "^2.1.13",
+    "@tiptap/extension-table-cell": "^2.1.13",
+    "@tiptap/extension-table-header": "^2.1.13",
+    "@tiptap/extension-table-row": "^2.1.13",
+    "@tiptap/extension-typography": "^2.1.13",
+    "@tiptap/extension-underline": "^2.1.13",
+    "@tiptap/pm": "^2.1.13",
+    "@tiptap/react": "^2.1.13",
+    "@tiptap/starter-kit": "^2.1.13",
+    "dompurify": "^3.0.6",
+    "idb": "^8.0.0",
+    "katex": "^0.16.9",
+    "pica": "^9.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.5",
+    "@types/katex": "^0.16.7",
+    "@types/node": "^24.9.1",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}

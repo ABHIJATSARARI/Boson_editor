@@ -1,0 +1,274 @@
+/* Code Block Component Styles */
+.code-block-wrapper {
+    margin: var(--spacing-lg) 0;
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    transition: all 0.2s ease;
+}
+
+.code-block-wrapper:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+/* Header */
+.code-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Language Selector */
+.code-block-language-selector {
+    position: relative;
+}
+
+.language-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.language-button:hover {
+    background: var(--button-hover);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+}
+
+.language-icon {
+    font-size: 0.875rem;
+}
+
+.language-label {
+    font-family: var(--font-family-mono);
+}
+
+.language-chevron {
+    font-size: 0.625rem;
+    opacity: 0.6;
+    transition: transform 0.2s ease;
+}
+
+.language-button:hover .language-chevron {
+    opacity: 1;
+}
+
+/* Language Menu */
+.language-menu {
+    position: absolute;
+    top: calc(100% + var(--spacing-xs));
+    left: 0;
+    min-width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow:
+        0 10px 25px -5px rgba(0, 0, 0, 0.1),
+        0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.language-menu-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.language-menu-list {
+    padding: var(--spacing-xs);
+}
+
+.language-menu-item {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-family: var(--font-family-mono);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.language-menu-item:hover {
+    background: var(--button-hover);
+    color: var(--text-primary);
+}
+
+.language-menu-item.active {
+    background: var(--accent-color);
+    color: white;
+    font-weight: 600;
+}
+
+.language-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.language-menu::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.language-menu::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: var(--radius-full);
+}
+
+.language-menu::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Copy Button */
+.copy-button {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: var(--button-hover);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.copy-button:active {
+    transform: translateY(0);
+}
+
+.copy-icon {
+    font-size: 0.875rem;
+}
+
+.copy-label {
+    font-family: var(--font-family-mono);
+}
+
+/* Code Block Content */
+.code-block-wrapper pre {
+    margin: 0;
+    padding: var(--spacing-lg);
+    background: var(--code-bg);
+    overflow-x: auto;
+    font-family: var(--font-family-mono);
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+.code-block-wrapper pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-primary);
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: var(--radius-full);
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Language-specific syntax highlighting hints */
+.code-block-wrapper pre.language-javascript,
+.code-block-wrapper pre.language-typescript {
+    background: linear-gradient(135deg, rgba(247, 223, 30, 0.03), rgba(0, 122, 204, 0.03));
+}
+
+.code-block-wrapper pre.language-python {
+    background: linear-gradient(135deg, rgba(55, 118, 171, 0.03), rgba(255, 212, 59, 0.03));
+}
+
+.code-block-wrapper pre.language-java {
+    background: linear-gradient(135deg, rgba(237, 100, 66, 0.03), rgba(45, 118, 183, 0.03));
+}
+
+.code-block-wrapper pre.language-html {
+    background: linear-gradient(135deg, rgba(227, 76, 38, 0.03), rgba(240, 101, 41, 0.03));
+}
+
+.code-block-wrapper pre.language-css,
+.code-block-wrapper pre.language-scss {
+    background: linear-gradient(135deg, rgba(38, 77, 228, 0.03), rgba(204, 51, 153, 0.03));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .code-block-header {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .language-button,
+    .copy-button {
+        padding: var(--spacing-xs);
+    }
+
+    .language-label,
+    .copy-label {
+        display: none;
+    }
+
+    .code-block-wrapper pre {
+        padding: var(--spacing-md);
+        font-size: 0.8125rem;
+    }
+}

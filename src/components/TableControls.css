@@ -1,0 +1,64 @@
+.table-controls {
+  z-index: var(--z-popover);
+  animation: fadeIn 0.15s ease;
+  pointer-events: auto;
+  margin-bottom: var(--spacing-md);
+}
+
+.table-controls-group {
+  background-color: var(--toolbar-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-right: var(--spacing-xs);
+  vertical-align: top;
+}
+
+.table-controls-divider {
+  display: inline-block;
+  width: 1px;
+  height: 32px;
+  background-color: var(--border-color);
+  margin: 0 var(--spacing-xs);
+  vertical-align: top;
+}
+
+.table-control-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  font-weight: 500;
+  min-width: 60px;
+}
+
+.table-control-btn:hover {
+  background-color: var(--button-hover);
+  color: var(--accent-color);
+}
+
+.table-control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table-controls-group {
+    flex-wrap: wrap;
+  }
+
+  .table-control-btn {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs);
+    min-width: 50px;
+  }
+}

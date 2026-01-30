@@ -1,0 +1,294 @@
+/* Advanced UI/UX Enhancements */
+
+/* Smooth typing cursor animation */
+.ProseMirror {
+  caret-color: var(--accent-color);
+}
+
+.ProseMirror:focus {
+  animation: pulse-caret 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-caret {
+
+  0%,
+  100% {
+    caret-color: var(--accent-color);
+  }
+
+  50% {
+    caret-color: var(--accent-hover);
+  }
+}
+
+/* Enhanced link styling */
+.ProseMirror a {
+  position: relative;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-image: linear-gradient(transparent calc(100% - 2px),
+      var(--accent-color) 2px);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+
+.ProseMirror a:hover {
+  color: var(--accent-hover);
+  background-size: 100% 100%;
+}
+
+/* Text highlight animation */
+.ProseMirror mark {
+  background: linear-gradient(120deg,
+      rgba(255, 215, 0, 0.3) 0%,
+      rgba(255, 223, 0, 0.5) 100%);
+  color: inherit;
+  padding: 0.125em 0.25em;
+  border-radius: var(--radius-sm);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.ProseMirror mark:hover {
+  background: linear-gradient(120deg,
+      rgba(255, 215, 0, 0.4) 0%,
+      rgba(255, 223, 0, 0.6) 100%);
+}
+
+/* Enhanced strong/bold */
+.ProseMirror strong {
+  font-weight: 700;
+  color: var(--text-primary);
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+/* Enhanced em/italic */
+.ProseMirror em {
+  font-style: italic;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+/* Code inline */
+.ProseMirror code {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+  background-color: var(--code-bg);
+  color: var(--accent-color);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--code-border);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.ProseMirror code:hover {
+  background-color: var(--button-hover);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Horizontal rule enhancement */
+.ProseMirror hr {
+  border: none;
+  height: 2px;
+  margin: 3em 0;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      var(--border-color) 20%,
+      var(--accent-color) 50%,
+      var(--border-color) 80%,
+      transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+
+.ProseMirror hr::before {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-primary);
+  padding: 0 1em;
+  color: var(--accent-color);
+  font-size: 1.2em;
+  opacity: 0.6;
+}
+
+/* Pull quote style */
+.ProseMirror blockquote.pull-quote {
+  font-size: 1.75rem;
+  text-align: center;
+  border-left: none;
+  border-top: 3px solid var(--accent-color);
+  border-bottom: 3px solid var(--accent-color);
+  padding: 2em 1em;
+  margin: 3em 0;
+  background: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.ProseMirror blockquote.pull-quote::before {
+  content: none;
+}
+
+/* Image caption style */
+.ProseMirror figure {
+  margin: 2.5em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ProseMirror figcaption {
+  margin-top: 0.75em;
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  font-style: italic;
+  text-align: center;
+  max-width: 90%;
+}
+
+/* Smooth page transitions */
+@media (prefers-reduced-motion: no-preference) {
+  .ProseMirror>* {
+    animation: fadeInUp 0.4s ease-out;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced heading anchor links */
+.ProseMirror h1:hover,
+.ProseMirror h2:hover,
+.ProseMirror h3:hover {
+  position: relative;
+}
+
+.ProseMirror h1:hover::before,
+.ProseMirror h2:hover::before,
+.ProseMirror h3:hover::before {
+  content: '#';
+  position: absolute;
+  left: -1.2em;
+  color: var(--accent-color);
+  opacity: 0.4;
+  font-weight: 400;
+  transition: opacity 0.2s ease;
+}
+
+.ProseMirror h1:hover::before:hover,
+.ProseMirror h2:hover::before:hover,
+.ProseMirror h3:hover::before:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* Subtle grid for alignment guides */
+.editor-wrapper.show-guides {
+  background-image:
+    repeating-linear-gradient(transparent,
+      transparent calc(1.75em - 1px),
+      rgba(59, 130, 246, 0.03) calc(1.75em - 1px),
+      rgba(59, 130, 246, 0.03) 1.75em);
+}
+
+/* Enhanced selection in code blocks */
+.ProseMirror pre ::selection {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+/* Better focus indicator for accessibility */
+.ProseMirror:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* Smooth font rendering */
+.ProseMirror {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+}
+
+/* Number formatting */
+.ProseMirror {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+.ProseMirror code,
+.ProseMirror pre,
+.ProseMirror .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Print styles */
+@media print {
+  .ProseMirror {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+  }
+
+  .ProseMirror a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .ProseMirror a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}
+
+/* Dark mode specific enhancements */
+.theme-dark .ProseMirror a {
+  color: #60a5fa;
+}
+
+.theme-dark .ProseMirror mark {
+  background: linear-gradient(120deg,
+      rgba(234, 179, 8, 0.2) 0%,
+      rgba(234, 179, 8, 0.3) 100%);
+}
+
+.theme-dark .ProseMirror code {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #60a5fa;
+}
+
+/* Accessibility: High contrast mode support */
+@media (prefers-contrast: high) {
+  .ProseMirror {
+    font-weight: 500;
+  }
+
+  .ProseMirror a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+
+  .ProseMirror mark {
+    outline: 2px solid currentColor;
+  }
+}

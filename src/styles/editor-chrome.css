@@ -1,0 +1,639 @@
+/* Premium Editor Chrome & UI Enhancements */
+
+/* Smooth page-level transitions */
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced cursor for the entire editor */
+.editor-wrapper {
+  cursor: text;
+}
+
+/* Breathing animation for empty state */
+@keyframes breathe {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.ProseMirror-focused p.is-editor-empty:first-child::before {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* Selection with gradient */
+.ProseMirror ::selection {
+  background: linear-gradient(120deg,
+      rgba(59, 130, 246, 0.2) 0%,
+      rgba(59, 130, 246, 0.3) 100%);
+  color: inherit;
+  text-shadow: none;
+}
+
+/* Paragraph focus indicator */
+.ProseMirror p {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.ProseMirror p:focus {
+  outline: none;
+}
+
+.ProseMirror p::after {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 0.5em;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.ProseMirror p:hover::after,
+.ProseMirror p:focus::after {
+  opacity: 1;
+}
+
+/* Title character count overlay */
+.title-wrapper {
+  position: relative;
+}
+
+.title-char-count {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: var(--font-family-mono);
+  pointer-events: none;
+}
+
+.title-wrapper:focus-within .title-char-count {
+  opacity: 1;
+}
+
+/* Enhanced placeholder states */
+.ProseMirror p.is-empty:first-child::before {
+  content: 'Start writing your story...';
+  color: var(--text-tertiary);
+  float: left;
+  height: 0;
+  pointer-events: none;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+/* Smooth fade-in for new content */
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ProseMirror>*:not(.is-editor-empty) {
+  animation: fadeInContent 0.3s ease-out;
+}
+
+/* Word highlighting on selection */
+.ProseMirror::selection {
+  background: linear-gradient(120deg,
+      rgba(59, 130, 246, 0.15),
+      rgba(59, 130, 246, 0.25));
+}
+
+/* Subtle grid for alignment (optional, toggle via class) */
+.editor-with-grid {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+}
+
+/* Enhanced heading styles with subtle animations */
+.ProseMirror h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  position: relative;
+  padding-bottom: 0.5em;
+}
+
+.ProseMirror h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), transparent);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+.ProseMirror h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+
+.ProseMirror h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--text-secondary);
+}
+
+/* Enhanced list styling */
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 2em;
+  margin: 1.5em 0;
+}
+
+.ProseMirror li {
+  margin: 0.5em 0;
+  line-height: 1.8;
+  position: relative;
+}
+
+.ProseMirror ul li::marker {
+  color: var(--accent-color);
+  font-size: 1.1em;
+}
+
+.ProseMirror ol {
+  counter-reset: list-counter;
+}
+
+.ProseMirror ol li {
+  counter-increment: list-counter;
+  padding-left: 0.5em;
+}
+
+.ProseMirror ol li::marker {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-feature-settings: "tnum";
+}
+
+/* Nested lists */
+.ProseMirror li>ul,
+.ProseMirror li>ol {
+  margin: 0.5em 0;
+}
+
+/* Task lists (if supported) */
+.ProseMirror li[data-type="taskItem"] {
+  display: flex;
+  gap: 0.5em;
+}
+
+.ProseMirror li[data-type="taskItem"] input[type="checkbox"] {
+  margin-top: 0.4em;
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+/* Enhanced horizontal rule */
+.ProseMirror hr {
+  border: none;
+  height: 1px;
+  margin: 3em 0;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      var(--border-color) 10%,
+      var(--accent-color) 50%,
+      var(--border-color) 90%,
+      transparent 100%);
+  position: relative;
+}
+
+.ProseMirror hr::before {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-primary);
+  padding: 0 1em;
+  color: var(--accent-color);
+  font-size: 1em;
+  opacity: 0.5;
+}
+
+/* Enhanced table styling */
+.ProseMirror table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 2em 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ProseMirror th,
+.ProseMirror td {
+  min-width: 1em;
+  border: 1px solid var(--border-color);
+  padding: 0.75em 1em;
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.ProseMirror th {
+  background: var(--bg-secondary);
+  font-weight: 600;
+  text-align: left;
+  position: relative;
+}
+
+.ProseMirror th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-color), transparent);
+  opacity: 0.3;
+}
+
+.ProseMirror td:hover,
+.ProseMirror th:hover {
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.ProseMirror .selectedCell {
+  background: rgba(59, 130, 246, 0.1);
+  position: relative;
+}
+
+.ProseMirror .selectedCell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--accent-color);
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+/* Floating action hints */
+.editor-hint {
+  position: fixed;
+  bottom: 100px;
+  right: var(--spacing-2xl);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  max-width: 250px;
+  z-index: 100;
+}
+
+.editor-hint.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.editor-hint::before {
+  content: '💡';
+  margin-right: 0.5em;
+}
+
+/* Command palette overlay (for keyboard shortcuts) */
+.command-palette {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  min-width: 500px;
+  max-width: 600px;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.command-palette.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.command-palette-input {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.command-palette-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.command-list {
+  margin-top: var(--spacing-md);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.command-item {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.command-item:hover,
+.command-item.selected {
+  background: var(--accent-color);
+  color: white;
+}
+
+.command-item-shortcut {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  font-family: var(--font-family-mono);
+}
+
+/* Enhanced math block styling */
+.ProseMirror .math-block {
+  margin: 2em 0;
+  padding: var(--spacing-lg);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-color);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-family: 'KaTeX_Main', serif;
+  font-size: 1.1em;
+}
+
+.ProseMirror .math-inline {
+  padding: 0.2em 0.4em;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  font-family: 'KaTeX_Main', serif;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Enhanced focus mode */
+body.focus-mode {
+  background: var(--bg-primary);
+}
+
+body.focus-mode .app-header {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+body.focus-mode .app-header:hover {
+  opacity: 1;
+}
+
+body.focus-mode .app-footer {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+body.focus-mode .app-footer:hover {
+  opacity: 1;
+}
+
+/* Ambient lighting effect */
+.editor-wrapper::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle,
+      rgba(59, 130, 246, 0.05) 0%,
+      transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.editor-wrapper:focus-within::before {
+  opacity: 1;
+}
+
+/* Smooth caret animation */
+.ProseMirror {
+  caret-color: var(--accent-color);
+}
+
+@keyframes caret-blink {
+
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+
+  20%,
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Enhanced empty state */
+.editor-empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: var(--text-tertiary);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.ProseMirror:empty+.editor-empty-state {
+  opacity: 1;
+}
+
+.editor-empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.editor-empty-state-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.editor-empty-state-hint {
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+/* Reading time estimator */
+.reading-estimate {
+  position: sticky;
+  top: 80px;
+  right: var(--spacing-xl);
+  float: right;
+  margin-left: var(--spacing-xl);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.reading-estimate.visible {
+  opacity: 1;
+}
+
+.reading-estimate-icon {
+  margin-right: 0.25em;
+}
+
+/* Print optimization */
+@media print {
+
+  .app-header,
+  .app-footer,
+  .floating-insert-button,
+  .floating-format-toolbar,
+  .table-controls,
+  .writing-stats-panel,
+  .reading-estimate {
+    display: none !important;
+  }
+
+  .editor-container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .ProseMirror {
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  .ProseMirror h1 {
+    font-size: 24pt !important;
+  }
+
+  .ProseMirror h2 {
+    font-size: 18pt !important;
+  }
+
+  .ProseMirror h3 {
+    font-size: 14pt !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .ProseMirror {
+    font-weight: 500;
+  }
+
+  .ProseMirror h1,
+  .ProseMirror h2,
+  .ProseMirror h3 {
+    font-weight: 800;
+  }
+
+  .ProseMirror a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
