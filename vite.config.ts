@@ -9,10 +9,11 @@ const __dirname = dirname(__filename);
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isLibMode = mode === 'production';
+  const isGitHubPages = mode === 'ghpages';
 
   return {
-    // Base path for GitHub Pages - update 'editor' to your repo name
-    base: process.env.GITHUB_ACTIONS ? '/editor/' : '/',
+    // Base path for GitHub Pages - matches repo name
+    base: isGitHubPages ? '/Boson_editor/' : '/',
     plugins: [react()],
     resolve: {
       alias: {
@@ -23,7 +24,7 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       open: true,
     },
-    build: isLibMode
+    build: (isLibMode && !isGitHubPages)
       ? {
           lib: {
             entry: resolve(__dirname, 'src/index.ts'),
