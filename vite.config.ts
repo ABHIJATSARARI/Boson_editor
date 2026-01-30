@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     // Base path for GitHub Pages - update 'editor' to your repo name
-    base: mode === 'development' ? '/' : '/editor/',
+    base: process.env.GITHUB_ACTIONS ? '/editor/' : '/',
     plugins: [react()],
     resolve: {
       alias: {
