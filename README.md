@@ -14,14 +14,14 @@
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#-quick-start">Quick Start</a> •
-  <a href="#-demo">Demo</a> •
+  <a href="https://abhijatsarari.github.io/Boson_editor/">Demo</a> •
   <a href="#-documentation">Docs</a> •
   <a href="#-contributing">Contributing</a>
 </p>
 
 <br/>
 
-<img src="https://raw.githubusercontent.com/bosonbrain/editor/main/.github/assets/editor-preview.png" alt="BosonBrain Editor Preview" width="100%"/>
+<img src="[https://raw.githubusercontent.com/bosonbrain/editor/main/.github/assets/editor-preview.pn](https://abhijatsarari.github.io/Boson_editor/)" alt="BosonBrain Editor Preview" width="100%"/>
 
 </div>
 
